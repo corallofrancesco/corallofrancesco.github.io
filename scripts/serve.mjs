@@ -1,0 +1,10 @@
+import './build.mjs';
+import {createServer} from 'node:http';
+import {readFile,stat} from 'node:fs/promises';
+import {resolve,extname,sep} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../dist/',import.meta.url));
+const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.xml':'application/xml','.txt':'text/plain'};
+const server=createServer(async(req,res)=>{try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);let path=resolve(root,'.'+pathname);if(path!==root.slice(0,-1)&&!path.startsWith(root))throw Error('Invalid path');if((await stat(path)).isDirectory()){if(!pathname.endsWith('/')){res.writeHead(301,{Location:pathname+'/'});res.end();return;}path=resolve(path,'index.html');}res.writeHead(200,{'Content-Type':mime[extname(path)]||'application/octet-stream','Cache-Control':'no-cache'});res.end(await readFile(path));}catch{res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});res.end(await readFile(resolve(root,'404.html')));}});
+server.on('error',error=>{console.error(error.message);process.exitCode=1});
+server.listen(Number(process.env.PORT||4321),'127.0.0.1',()=>console.log(`Local: http://127.0.0.1:${server.address().port}`));
