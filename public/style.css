@@ -157,10 +157,46 @@ footer {
 .not-found h1 { font-size: clamp(3rem, 9vw, 7rem); }
 .not-found .summary { margin-bottom: 1.5rem; }
 
-@media (max-width: 34rem) {
-  .page { width: min(100% - 2rem, 72rem); }
-  .home main { gap: 1rem; }
-  .details { grid-column: 1 / -1; }
+@media (max-width: 48rem) {
+  body { overflow-y: auto; }
+
+  .page {
+    width: min(100% - 2rem, 72rem);
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .home main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .portrait {
+    grid-column: 1;
+    grid-row: 1;
+    width: clamp(9rem, 42vw, 13rem);
+    justify-self: center;
+    margin-bottom: .5rem;
+  }
+
+  .portrait img {
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .intro {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .details {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
   .summary { font-size: .95rem; }
   .details .context { font-size: .82rem; line-height: 1.5; }
   header span { display: none; }
