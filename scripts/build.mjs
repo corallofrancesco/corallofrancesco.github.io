@@ -64,7 +64,7 @@ const home = `<main id="main">
   </div>
   <div class="details">
     <p class="summary">I’m Francesco, an AI leader and hands-on developer with a background in space engineering. I focus on turning generative AI from promising experiments into measurable business impact through AI agents, software development, workflow automation.</p>
-    <p class="context">My path into AI began with machine learning in 2017 while studying space engineering, then building Python tools and ML models as a systems engineer. Today, as ${esc(config.role)} at ${esc(config.company)}, I work across technology, engineering, and Information Systems to turn high-value AI applications into solutions people actually use. I also lead the overall AI strategy and edge AI for spacecraft.</p>
+    <p class="context">My path into AI began with machine learning in 2017 while studying space engineering, then building Python tools and ML models as a system engineer. Today, as ${esc(config.role)} at ${esc(config.company)}, I work across technology, engineering, and Information Systems to turn high-value AI applications into solutions people actually use. I also lead the overall AI strategy and edge AI for spacecraft.</p>
     <div class="links" aria-label="Social links">
       <a href="${url(config.linkedin)}">LinkedIn ↗</a>
       ${config.github ? `<a href="${url(config.github)}">GitHub ↗</a>` : ''}
